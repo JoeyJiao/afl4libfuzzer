@@ -1,0 +1,19 @@
+cc_binary {
+	name: "afl_harness",
+
+	srcs: [
+		"src/afl-llvm-rt.o.c",
+		"src/afl_driver.cpp",
+		"src/test_fuzzer.cc",
+	],
+
+	cflags: [
+		"-Wno-pointer-sign",
+		"-Wno-pointer-arith",
+		"-Wno-sign-compare",
+		"-Wno-unused-parameter",
+		"-Wno-unused-function",
+		"-Wno-format",
+		"-Wno-user-defined-warnings",
+	],
+}
