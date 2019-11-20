@@ -1,10 +1,21 @@
+cc_library_shared {
+	name: "libfuzzer_target",
+
+	srcs: [
+		"src/test_fuzzer.cc",
+	],
+
+	cflags: [
+		"-fsanitize=fuzzer",
+	],
+}
+
 cc_binary {
-	name: "afl_harness",
+	name: "afl4libfuzzer",
 
 	srcs: [
 		"src/afl-llvm-rt.o.c",
 		"src/afl_driver.cpp",
-		"src/test_fuzzer.cc",
 	],
 
 	cflags: [
@@ -15,5 +26,9 @@ cc_binary {
 		"-Wno-unused-function",
 		"-Wno-format",
 		"-Wno-user-defined-warnings",
+	],
+
+	shared_libs: [
+		"libfuzzer_target",
 	],
 }
